@@ -4,3 +4,18 @@
 
 layout: home
 ---
+
+
+- ab
+- cd
+
+
+
+
+<ul>
+    {% for page in site.pages %}
+     <li>
+        page {{ page.url }}
+     </li>
+    {% endfor %}
+</ul>
