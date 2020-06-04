@@ -6,4 +6,8 @@ layout: home
 ---
 
 
+- a
+- b
+
+
 {%page.path%}
