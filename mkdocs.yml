@@ -1,1 +1,5 @@
 site_name: Cer's wiki
+theme:
+  name: material
+markdown_extensions:
+  markdown_kroki: {}

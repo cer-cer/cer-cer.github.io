@@ -4,6 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+markdown-kroki = "*"
+mkdocs-material = "*"
+mkdocs = "*"
 
 [dev-packages]
 
