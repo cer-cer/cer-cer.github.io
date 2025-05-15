@@ -1,5 +1,18 @@
 site_name: Cer's wiki
+nav:
+  - homePage: ./index.md
+  - VS: ./vs/common_ui_partner_vs.md
 theme:
   name: material
+  language: zh
+  features:
+      - navigation.instant
+  palette:
+    primary: grey
+  extra:
+    generator: false
+    copyright: Copyright &copy; 2016 - 2020 Martin Donath
+    social:
+      name: xxx
 markdown_extensions:
-  markdown_kroki: {}
+  - markdown_kroki: {}
