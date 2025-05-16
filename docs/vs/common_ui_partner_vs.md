@@ -12,7 +12,7 @@
 
 ### iOS
 
-iOS本身native的开放方式，来描述iOS本身的布局过程和渲染过程。
+iOS本身native的开发方式，来描述iOS本身的布局过程和渲染过程。
 
 #### 布局过程
 
@@ -227,4 +227,59 @@ end
 
 #### 渲染过程
 
+flutter中，renderobject负责渲染。涉及渲染的其它类包括：
+
+- Canvas: 封装了skia的绘制操作，它在API文档中的定义是：
+
+```text
+An interface for recording graphical operations.
+```
+
+- Layer: 画布。包括绘制产物和容器类产物.
+  - PictureLayer: 绘制产物，layer tree中的叶子结点。产生一个最终的 `Picture` 对象。该对象用于`Scene` 的渲染。
+  - ContainerLayer: 容器layer，包含多个child layer。
+- Scene: 最终向屏幕绘制的产物。`Scene objects can be displayed on the screen using the FlutterView.render method.`
+
+##### 渲染类关系图
+
+```plantuml
+@startuml
+title: flutter渲染类关系图
+
+package rendering {
+    class Layer
+    class PictureLayer
+    class RendObject
+    class PaintContext
+}
+
+package ui {
+    class Canvas
+    class Picture
+    class Scene
+    class FlutterView
+}
+
+RendObject o.. Layer
+PaintContext *.. Layer
+PaintContext *.. Canvas
+
+PictureLayer -|> Layer
+PictureLayer o.. Picture
+Scene o.. Picture
+
+FlutterView o.. Scene
+@enduml
+```
+
 ### QT
+
+对于qt的布局过程和渲染过程，未知，需要dive deep。
+
+## UI生命周期
+
+### iOS UI 生命周期
+
+iOS UI声明周期包括两种，
+一种为view controller自身appear和disappear的过程。
+另一种是view自身的appear和disappear过程。
