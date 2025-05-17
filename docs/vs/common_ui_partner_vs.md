@@ -1,6 +1,6 @@
 # 常用UI组件比较(iOS/Android/Flutter/QT)
 
-本文用来比较ios/Android/flutter/qt开发过程中，常用的几种组件。包括UI的布局和渲染，UI生命周期，多线程的支持，事件的分发，内存管理等。
+本文用来比较ios/Android/flutter/qt开发过程中，常用的几种组件。包括UI的布局和渲染，多线程的支持，事件的分发，内存管理等。
 
 因为iOS/Android/flutter/qt 都是涉及UI处理的组件，它们基本都涉及这些部分。当然，对于iOS/Android来说，他们是系统的native开发，包含更广泛的组件。而flutter/qt，更多聚焦在跨平台的UI处理。
 
@@ -276,10 +276,19 @@ FlutterView o.. Scene
 
 对于qt的布局过程和渲染过程，未知，需要dive deep。
 
-## UI生命周期
+## 多线程
 
-### iOS UI 生命周期
+|类型|UI线程|线程保活|多线程框架|
+|---|---|---|---|
+|iOS|主线程|Runloop|<li>Dispatch(GCD)<br><li>Queue|
+|Android|主线程|Looper|<li>Handler<br><li>AsyncTask|
+|Flutter|主Isolate|event loop|<li>LoadBalancer|
+|QT|主线程|event loop|<li>QThreadPool<br><li>QtConcurrent|
 
-iOS UI声明周期包括两种，
-一种为view controller自身appear和disappear的过程。
-另一种是view自身的appear和disappear过程。
+- iOS的Runloop创建过程:
+  - 使用`NSThread` 创建一个线程，在线程函数执行
+  - RunLoop.current.run()
+
+[iOS Threading Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html?language=objc#//apple_ref/doc/uid/10000057i)
+
+- 
