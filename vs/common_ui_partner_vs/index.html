@@ -982,8 +982,41 @@ Before displaying a window that uses constraints-based layout the system invokes
 </ul>
 <p><a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html?language=objc#//apple_ref/doc/uid/10000057i">iOS Threading Programming Guide</a></p>
 <ul>
-<li></li>
+<li>Android使用Looper使thread保活。它的每一个looper都有一个message queue.</li>
 </ul>
+<p>通过给looper绑定一个handler，可以检索到message queue中的消息。同时，也可以通过这个handle发送指定的message运行在特定的thread上下文。</p>
+<p>Example from API:</p>
+<pre><code class="language-java">  class LooperThread extends Thread {
+      public Handler mHandler;
+
+      public void run() {
+          Looper.prepare();
+
+          mHandler = new Handler(Looper.myLooper()) {
+              public void handleMessage(Message msg) {
+                  // process incoming messages here
+              }
+          };
+
+          Looper.loop();
+      }
+  }
+</code></pre>
+<p>looper有很多很有帮助的方法，比如 <code>public void setMessageLogging (Printer printer)</code>, 可以打印该线程运行的时机，包括处理特定任务以及进入idle。</p>
+<p>当Handle绑定一个looper后，就等于该线程的运行函数。可以post runnable护着message给这个handle处理。这些runnable将运行在这个线程上下文，同时，message也会派发给handle的处理回调。</p>
+<ul>
+<li>Flutter中没有线程的概念，却有 isloate的概念。每一个isloate中内存不共享。其UI运行在UI isloate中。</li>
+</ul>
+<p>isloate的通信通过port进行。</p>
+<pre><code class="language-text">All Dart code runs in an isolate, and code can access classes and values only from the same isolate. Different isolates can communicate by sending values through ports (see ReceivePort, SendPort).
+</code></pre>
+<p>而经常使用future和async只是对isloate的切片。</p>
+<ul>
+<li>QT的UI也运行在主线程中。它的每一个对象，都有自己的运行线程。在对象被生成时，如果有parent，则会绑定parent的线程。</li>
+</ul>
+<p>如果要想一个对象运行在自线程，首先这个对象没有parent，或者对象初始化在子线程上下文。</p>
+<p>如果对象没有parent，可以通过moveToThread切换线程上下文。</p>
+<p>这是由于qt的信号槽机制。为了使槽函数必须运行在指定的线程上，以保证线程安全而设计的。</p>
 
 
 
