@@ -5,6 +5,7 @@ nav:
     - 常用UI组件比较(iOS/Android/Flutter/QT): ./vs/common_ui_partner_vs.md
   - staticWiki:
     - setup_mkdocs: ./mkdoc/setup_mkdocs.md
+  - Mac: ./mac.md
 theme:
   name: material
   language: zh

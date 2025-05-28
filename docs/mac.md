@@ -1,0 +1,3 @@
+# Mac issue...
+
+- [The thinking of macos rpath](./mac/mac_rpath.md)
