@@ -498,7 +498,7 @@ zsh: abort      ./ffmpeg
 <ul>
 <li>Add find path with executed file</li>
 </ul>
-<p>It is better that define the rpath by the loader path, which means the lib/executor load path. There is a document which about the detail.
+<p>It is better that add a rpath by the loader path, which means the lib/executable load path. There is a document which about the detail.
 <a href="https://itwenty.me/posts/01-understanding-rpath/">Understanding dyld @executable_path, @loader_path and @rpath</a></p>
 <pre><code>install_name_tool -add_rpath @loader_path/../lib ffmpeg
 </code></pre>
