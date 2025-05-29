@@ -503,8 +503,8 @@ zsh: abort      ./ffmpeg
 <pre><code>install_name_tool -add_rpath @loader_path/../lib ffmpeg
 </code></pre>
 <p>Let's explain the executable_path / loader_path / rpath in a short message.
-  - executable_path, the executor file's directory.
-  - loader_path, the directory not only the executor file but also the dynamic lib when it loaded.
+  - executable_path, the executable file's directory.
+  - loader_path, the directory not only the executable file but also the dynamic lib when it loaded.
   - rpath, A path that help the macos to find the lib saving direcotry.</p>
 <ul>
 <li>The result after changes.</li>
