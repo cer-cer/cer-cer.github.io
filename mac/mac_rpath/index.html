@@ -498,8 +498,14 @@ zsh: abort      ./ffmpeg
 <ul>
 <li>Add find path with executed file</li>
 </ul>
-<pre><code>install_name_tool -add_rpath ../lib ffmpeg
+<p>It is better that define the rpath by the loader path, which means the lib/executor load path. There is a document which about the detail.
+<a href="https://itwenty.me/posts/01-understanding-rpath/">Understanding dyld @executable_path, @loader_path and @rpath</a></p>
+<pre><code>install_name_tool -add_rpath @loader_path/../lib ffmpeg
 </code></pre>
+<p>Let's explain the executable_path / loader_path / rpath in a short message.
+  - executable_path, the executor file's directory.
+  - loader_path, the directory not only the executor file but also the dynamic lib when it loaded.
+  - rpath, A path that help the macos to find the lib saving direcotry.</p>
 <ul>
 <li>The result after changes.</li>
 </ul>
@@ -513,7 +519,7 @@ zsh: abort      ./ffmpeg
 <pre><code class="language-txt">Load command 63
           cmd LC_RPATH
       cmdsize 24
-         path ../lib (offset 12)
+         path @loader_path/../lib (offset 12)
 </code></pre>
 <p>It's working..</p>
 
