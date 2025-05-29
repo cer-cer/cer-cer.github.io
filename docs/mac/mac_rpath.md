@@ -46,9 +46,17 @@ install_name_tool -change ./lib/lib/libswresample.5.dylib @rpath/libswresample.5
 
 - Add find path with executed file
 
+It is better that add a rpath by the loader path, which means the lib/executable load path. There is a document which about the detail.
+[Understanding dyld @executable_path, @loader_path and @rpath](https://itwenty.me/posts/01-understanding-rpath/)
+
 ```
-install_name_tool -add_rpath ../lib ffmpeg
+install_name_tool -add_rpath @loader_path/../lib ffmpeg
 ```
+
+Let's explain the executable_path / loader_path / rpath in a short message.
+  - executable_path, the executable file's directory.
+  - loader_path, the directory not only the executable file but also the dynamic lib when it loaded.
+  - rpath, A path that help the macos to find the lib saving direcotry.
 
 - The result after changes.
 
@@ -65,7 +73,7 @@ install_name_tool -add_rpath ../lib ffmpeg
 Load command 63
           cmd LC_RPATH
       cmdsize 24
-         path ../lib (offset 12)
+         path @loader_path/../lib (offset 12)
 ```
 
 It's working..
