@@ -47,7 +47,7 @@ package "dart:rendering" {
     PictureLayer -|> Layer
 }
 
-FlutterView -> Scene
+FlutterView -up-> Scene
 Scene "1" -> "*" Layer
 
 Layer "1" -> "1" Picture

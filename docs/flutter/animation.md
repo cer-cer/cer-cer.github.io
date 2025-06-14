@@ -13,8 +13,8 @@ abstract Animation<T> {
 class AnimationController
 class CurvedAnimation
 
-CurvedAnimation -|> Animation
-AnimationController -|> Animation
+CurvedAnimation -up-|> Animation
+AnimationController -up-|> Animation
 
 abstract Animatable<T> {
     Animation<T> animate( Animation<double> parent )
@@ -24,14 +24,14 @@ class Tween<T extends Object?>
 class CurveTween
 class TweenSequence
 
-Tween -|> Animatable
-CurveTween -|> Animatable
-TweenSequence -|> Animatable
+Tween -up-|> Animatable
+CurveTween -up-|> Animatable
+TweenSequence -up-|> Animatable
 
 abstract Curve
 
-CurvedAnimation -> Curve
-CurveTween -> Curve
+CurvedAnimation -right-> Curve
+CurveTween -down-> Curve
 
 abstract TickerProvider{
     Ticker createTicker( TickerCallback onTick )
@@ -39,10 +39,10 @@ abstract TickerProvider{
 class SingleTickerProviderStateMixin
 class TickerProviderStateMixin
 
-SingleTickerProviderStateMixin -|> TickerProvider
-TickerProviderStateMixin -|> TickerProvider
+SingleTickerProviderStateMixin -up-|> TickerProvider
+TickerProviderStateMixin -up-|> TickerProvider
 
-AnimationController -> TickerProvider
+AnimationController -down-> TickerProvider
 @enduml
 ```
 
