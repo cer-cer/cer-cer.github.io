@@ -11,7 +11,10 @@ abstract Animation<T> {
 }
 
 class AnimationController
-class CurvedAnimation
+class CurvedAnimation{
+    CurvedAnimation({required Animation, required Curve , Curve?})
+}
+note bottom: the construct need AnimationController
 
 CurvedAnimation -up-|> Animation
 AnimationController -up-|> Animation
