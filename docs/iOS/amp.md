@@ -64,3 +64,29 @@ Use a new thread to monitor the main thread by install a event callback to main 
 Thread.callStackSymbols()
 ```
 
+### The other thread
+
+```
+thread_get_state
+```
+
+### Crash types
+
+- unrecognized selector crash
+  - message forward method
+- KVO crash
+  - KVO prinple
+  - swizzle observer property.
+    - Use `object_setClass`
+- NSNotification crash
+  - Deprecated
+- NSTimer crash
+  - 
+- Container crash（数组越界，插nil等）
+  - Swizzle or use protect method
+- NSString crash （字符串操作的crash）
+  - 
+- Bad Access crash （野指针）
+  - allocWithZone
+  - dealloc
+- UI not on Main Thread Crash (非主线程刷UI(机制待改善))
