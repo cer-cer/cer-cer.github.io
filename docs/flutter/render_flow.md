@@ -54,3 +54,29 @@ Layer "1" -> "1" Picture
 
 @enduml
 ```
+
+## layer 生成
+
+### flutter engine launch
+
+- RenderView -> prepareInitialFrame -> TransformLayer
+
+### makeNeedToPaint
+
+- paint 生成layer
+- 图层合成（Compositing）
+  - RenderView compositeFrame
+
+```dart
+final ui.SceneBuilder builder = RendererBinding.instance.createSceneBuilder();
+final ui.Scene scene = layer!.buildScene(builder);
+if (automaticSystemUiAdjustment) {
+    _updateSystemChrome();
+  }
+  assert(configuration.logicalConstraints.isSatisfiedBy(size));
+  _view.render(scene, size: configuration.toPhysicalSize(size));
+ scene.dispose();
+```
+
+- 栅格化（Rasterization）
+

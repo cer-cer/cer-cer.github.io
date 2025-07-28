@@ -74,8 +74,15 @@ thread_get_state
 
 - unrecognized selector crash
   - message forward method
+  - Message forwarding
+    - `resolveClassMethod` & `resolveInstanceMethod`
+    - `forwardingTarget`
+    - `methodSignatureForSelector` -> `forwardInvocation`
+    - `doesNotRecognizeSelector`
 - KVO crash
   - KVO prinple
+    - 当对象增加kvo时，runtime会修改object的isa 指针。 `NSKVONotifying_`
+    - ISA 指向一个重写了set方法的类。
   - swizzle observer property.
     - Use `object_setClass`
 - NSNotification crash

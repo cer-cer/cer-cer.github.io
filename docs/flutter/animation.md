@@ -61,12 +61,37 @@ The animation has a start value and end value. `AnimationController` will produc
 
 The value will be producted by `Animation`'s value, developer could add listener by `addListener`to monitor the value's change, meanwhile, also could monitor the animation's status.
 
+The animation use method `Animation<U> drive<U>( Animatable<U> child )` to `drive` the `Animatable`.
+
 ## Tween
+
+which is a `Animatable` class for `Animation`.
 
 Since the `AnimationController` only prodct a `double` interploate value, so we need other class to product a value could be apply to the widget.
 
 `Tween` will product differet types' value, like `int`, `color`, `decoration`...The `Tween` product a `interpolating` value which could generate an animation by `animate` method.
 
+class `CurveTween` use to `bind` a `Curve` for the chanin `Tween`.
+
+### Tween Chain
+
+Purpose
+
+Simplifies the creation of complex animations by composing multiple Tween actions into a single, manageable unit.
+
+```dart
+final controlelr = AnimationController()
+final tween = ColorTween().chain(CurveTween())
+controlelr.drive(tween)
+```
+
+### [Tween sequence](https://medium.com/thismightwork/https-medium-com-thomas-cornet-sequenced-animations-in-flutter-7c4fa4117598)
+
+Purpose
+
+Allows you to control the timing and duration of each Tween step, creating more complex, multi-step animations. 
+
+- [Advanced Flutter Animations – Staggered Animations, Tween Chaining and Transforms](https://flexiple.com/app/advanced-flutter-animations)
 
 ## Curve
 
